@@ -4,12 +4,16 @@ import com.google.gson.Gson;
 import configuration.BasicTest;
 import dto.Stock;
 import dto.Stocks;
+import helper.SavingFileHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import page.objects.PrivacyAndPolicyPage;
 import page.objects.QuotesPagesBarPage;
 
+import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,9 +21,10 @@ import java.util.stream.Collectors;
 public class DownloadStocksData extends BasicTest {
 
     private Gson gson = new Gson();
+    public static final Path OUTPUT_STOCK_FILES_PATH = Path.of("src", "main", "resources", "stock_data");
 
     @Test
-    public void getStocksData() {
+    public void retrieveStocksData() {
         QuotesPagesBarPage quotesPagesBarPage = new QuotesPagesBarPage(webDriver);
         quotesPagesBarPage.openPage();
         PrivacyAndPolicyPage privacyAndPolicyPage = new PrivacyAndPolicyPage(webDriver);
@@ -31,7 +36,13 @@ public class DownloadStocksData extends BasicTest {
 
         Stocks stocks = new Stocks();
         stocks.setStocksData(allStocks);
-        String json = gson.toJson(stocks);
+
+        String dataJson = gson.toJson(stocks);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd__HH_mm_ss");
+        LocalDateTime now = LocalDateTime.now();
+        String filename = "stocks_data_" + dtf.format(now) + ".json";
+        SavingFileHelper sfh = new SavingFileHelper();
+        sfh.saveDataInJsonFormat(dataJson, OUTPUT_STOCK_FILES_PATH.resolve(filename));
     }
 
     private List<Stock> getStocks(QuotesPagesBarPage quotesPagesBarPage, List<String> quotesBarTexts) {

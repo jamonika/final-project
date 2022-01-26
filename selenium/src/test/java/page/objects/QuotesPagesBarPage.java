@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,15 +31,10 @@ public class QuotesPagesBarPage extends Page {
                 .collect(Collectors.toList());
     }
 
-    public QuotesPagesBarPage goToSpecificPageOfQuotes(String page) {
-        webDriver.findElement(By.xpath("//div[contains(@class, 'pagination')]/a[text()='" + page + "']")).click();
-        return this;
+    public QuotesPage goToSpecificPageOfQuotes(String page) {
+        String locator = String.format("//div[contains(@class, 'pagination')]/a[text()='%s']", page);
+        webDriver.findElement(By.xpath(locator)).click();
+        return new QuotesPage(webDriver);
     }
 
-    public List<WebElement> getQuotesRowsFromPage() {
-        List<WebElement> quotesRows = new ArrayList<>();
-        return new QuotesPage(webDriver).getQuotesTable()
-                .findElements(By.tagName("tr")).stream()
-                .filter(w -> !w.getAttribute("class").contains("adv")).collect(Collectors.toList());
-    }
 }
