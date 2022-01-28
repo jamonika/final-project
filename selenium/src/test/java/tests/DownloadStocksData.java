@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import configuration.BasicTest;
 import dto.Stock;
 import dto.Stocks;
-import helper.SavingFileHelper;
+import helper.FileHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -40,8 +40,8 @@ public class DownloadStocksData extends BasicTest {
         String dataJson = gson.toJson(stocks);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd__HH_mm_ss");
         LocalDateTime now = LocalDateTime.now();
-        String filename = "stocks_data_" + dtf.format(now) + ".json";
-        SavingFileHelper sfh = new SavingFileHelper();
+        String filename = "stocks_data-" + dtf.format(now) + ".json";
+        FileHelper sfh = new FileHelper();
         sfh.saveDataInJsonFormat(dataJson, OUTPUT_STOCK_FILES_PATH.resolve(filename));
     }
 

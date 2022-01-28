@@ -1,10 +1,10 @@
 package dto;
 
 import lombok.Builder;
-
-import java.util.Date;
+import lombok.Getter;
 
 @Builder
+@Getter
 public class Stock {
     private String name;
     private String price;
