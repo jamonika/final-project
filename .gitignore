@@ -6,3 +6,6 @@
 # Maven
 **/target/
 */bin/
+
+# Allure
+*.allure
