@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.Assert.assertTrue;
+
 
 public class CheckIfStocksPriceRaisedTest {
 
