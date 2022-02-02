@@ -2,14 +2,14 @@ package helper;
 
 import com.google.gson.Gson;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
 
 import static java.nio.file.Files.readString;
-import static org.testng.AssertJUnit.fail;
 
 public class FileHelper {
 
@@ -21,7 +21,6 @@ public class FileHelper {
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
-            fail("File operation failed");
         }
     }
 
@@ -30,8 +29,21 @@ public class FileHelper {
         try {
             return gson.fromJson(readString(inputFilePath), (Type) obj);
         } catch (IOException e) {
-            fail("File is invalid and not readable");
+            e.printStackTrace();
         }
         return null;
+    }
+
+    public Path saveDataInCsvFormat(ArrayList<String> lines) {
+        try {
+            File file = new File(String.format("results_%s.csv", LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)));
+            PrintWriter printerWriter = new PrintWriter(file);
+            for (String line : lines)
+                printerWriter.println(line);
+            printerWriter.close();
+            return file.toPath().toAbsolutePath();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

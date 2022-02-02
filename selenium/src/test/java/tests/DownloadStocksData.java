@@ -66,14 +66,14 @@ public class DownloadStocksData extends BasicTest {
         int i = 0;
         Stock stock = Stock.builder()
                 .name(name)
-                .price(stockDataStrings.get(0))
-                .change(stockDataStrings.get(++i))
-                .percentageChange(stockDataStrings.get(++i))
-                .transactionsNumber(stockDataStrings.get(++i))
-                .volume(stockDataStrings.get(++i))
-                .opening(stockDataStrings.get(++i))
-                .max(stockDataStrings.get(++i))
-                .min(stockDataStrings.get(++i))
+                .price(stockDataStrings.get(0).replace(",", ".").replace(" ", ""))
+                .change(stockDataStrings.get(++i).replace(",", ".").replace(" ", ""))
+                .percentageChange(stockDataStrings.get(++i).replace(",", ".").replace(" ", ""))
+                .transactionsNumber(stockDataStrings.get(++i).replace(",", ".").replace(" ", ""))
+                .volume(stockDataStrings.get(++i).replace(",", ".").replace(" ", ""))
+                .opening(stockDataStrings.get(++i).replace(",", ".").replace(" ", ""))
+                .max(stockDataStrings.get(++i).replace(",", ".").replace(" ", ""))
+                .min(stockDataStrings.get(++i).replace(",", ".").replace(" ", ""))
                 .time(stockDataStrings.get(++i))
                 .build();
 

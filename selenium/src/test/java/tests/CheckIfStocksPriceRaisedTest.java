@@ -24,8 +24,8 @@ public class CheckIfStocksPriceRaisedTest {
     }
 
     @Test(dataProvider = "stockData")
-    public void checkIfStockPriceRaised(String name, String change2, Stock stock) {
-        Double change = Double.valueOf(stock.getChange().replace(",", "."));
+    public void checkIfStockPriceRaised(String name, String changeStr, Stock stock) {
+        Double change = Double.valueOf(changeStr);
         assertTrue(change > 0);
     }
 
