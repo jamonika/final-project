@@ -8,33 +8,33 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class QuotesPagesBarPage extends Page {
+public class StocksPagesBarPage extends Page {
 
-    public static final String BASE_QUOTES_URL = "https://www.bankier.pl/gielda/notowania/akcje";
+    public static final String BASE_STOCKS_URL = "https://www.bankier.pl/gielda/notowania/akcje";
 
     @FindBy(css = ".pagination.top a")
-    private List<WebElement> quotesBar;
+    private List<WebElement> stocksPagesBar;
 
-    public QuotesPagesBarPage(WebDriver webDriver) {
+    public StocksPagesBarPage(WebDriver webDriver) {
         super(webDriver);
     }
 
     @Override
     public String getUrl() {
-        return BASE_QUOTES_URL;
+        return BASE_STOCKS_URL;
     }
 
-    public List<String> getAllQuotesBarTexts() {
-        return quotesBar.stream()
+    public List<String> getAllStockPagesTexts() {
+        return stocksPagesBar.stream()
                 .filter(w -> !w.getAttribute("class").contains("all"))
                 .map(w -> w.getText())
                 .collect(Collectors.toList());
     }
 
-    public QuotesPage goToSpecificPageOfQuotes(String page) {
+    public StocksListPage goToSpecificPageOfStocks(String page) {
         String locator = String.format("//div[contains(@class, 'pagination')]/a[text()='%s']", page);
         webDriver.findElement(By.xpath(locator)).click();
-        return new QuotesPage(webDriver);
+        return new StocksListPage(webDriver);
     }
 
 }

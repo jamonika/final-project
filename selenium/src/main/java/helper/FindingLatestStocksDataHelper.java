@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class FindingLatestStocksDataHelper {
 
-    private static final Path STOCK_FILES_PATH = Path.of("selenium", "src", "main", "resources", "stock_data");
+    private static final Path STOCK_FILES_PATH = Path.of( "stock_data");
 
     public Stocks getMostRecentTimeResults() {
         File filePath = new File(String.valueOf(STOCK_FILES_PATH));

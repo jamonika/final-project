@@ -1,14 +1,16 @@
-package filter.stocks.tool;
+package filter.stocks.runner;
 
 import dto.Stock;
 import dto.Stocks;
 import helper.FileHelper;
 import helper.FindingLatestStocksDataHelper;
 
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
 
 public class FilterStocksRunner {
+    public static final Path RESULTS_OUTPUT_PATH = Path.of("selenium", "filtering-results");
 
     public static void main(String[] args) {
         FilterStocks fs;
@@ -36,7 +38,7 @@ public class FilterStocksRunner {
             Stocks filtered = new Stocks();
             filtered.setStocksData(fs.filterStocksData(stocks));
             FileHelper fh = new FileHelper();
-            fh.saveDataInCsvFormat(filtered.mapStockListToStringList());
+            fh.saveDataInCsvFormat(filtered.mapStockListToStringList(), RESULTS_OUTPUT_PATH);
         }
     }
 }

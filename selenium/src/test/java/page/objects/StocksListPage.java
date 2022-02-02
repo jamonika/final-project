@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
-public class QuotesPage extends Page{
+public class StocksListPage extends Page{
 
     @FindBy(css = "#boxQuotes table tbody")
     private WebElement quotesTable;
 
-    public QuotesPage(WebDriver webDriver) {
+    public StocksListPage(WebDriver webDriver) {
         super(webDriver);
     }
 

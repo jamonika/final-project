@@ -1,4 +1,4 @@
-package filter.stocks.tool;
+package filter.stocks.runner;
 
 import dto.Stock;
 
@@ -10,7 +10,6 @@ public class FilterStocks {
     private Integer parameter;
     private char operator;
     private List<Double> values = new ArrayList<>();
-
 
 
     public void askUserForParameter() {
@@ -98,14 +97,15 @@ public class FilterStocks {
         return stocksInput.stream()
                 .filter(s -> {
                     Double value = Double.valueOf(s.returnSelectedParameter(parameter).replace("%", ""));
-                    if (operator == '>' && values.size() == 1) {
-                        return value > values.get(0);
-                    }
-                    if (operator == '<' && values.size() == 1) {
-                        return value < values.get(0);
-                    }
-                    if (operator == '=' && values.size() == 1) {
-                        return value.equals(values.get(0));
+                    if (values.size() == 1) {
+                        switch (operator) {
+                            case '>':
+                                return value > values.get(0);
+                            case '<':
+                                return value < values.get(0);
+                            case '=':
+                                return value.equals(values.get(0));
+                        }
                     }
                     if (values.size() == 2) {
                         return value < values.get(0) && value > values.get(1);

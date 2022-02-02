@@ -29,21 +29,20 @@ public class FileHelper {
         try {
             return gson.fromJson(readString(inputFilePath), (Type) obj);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Attempt to read the file failed");
         }
         return null;
     }
 
-    public Path saveDataInCsvFormat(ArrayList<String> lines) {
+    public void saveDataInCsvFormat(ArrayList<String> lines, Path path) {
         try {
-            File file = new File(String.format("results_%s.csv", LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)));
+            File file = new File(String.valueOf(path.resolve(String.format("results_%s.csv", LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)))));
             PrintWriter printerWriter = new PrintWriter(file);
             for (String line : lines)
                 printerWriter.println(line);
             printerWriter.close();
-            return file.toPath().toAbsolutePath();
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("File is not saved due to incorrect path");
         }
     }
 }

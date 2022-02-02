@@ -3,6 +3,10 @@ package dto;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Data
 @Builder
 public class StockPricePoint {
@@ -15,6 +19,6 @@ public class StockPricePoint {
     }
 
     public static String getHeaders() {
-        return "Time, Price";
+        return "Time,Price";
     }
 }

@@ -2,29 +2,25 @@ package helper;
 
 import com.google.gson.Gson;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.nio.file.Files.readAllLines;
-import static java.nio.file.Files.readString;
 
 public class FileHelper {
 
-    public Path saveDataInCsvFormat(ArrayList<String> lines, String stockName) {
+    public void saveDataInCsvFormat(ArrayList<String> lines, String fileName, Path outputFilePath) {
         try {
-            File file = new File(String.format("%s.csv", stockName));
-            PrintWriter printerWriter = new PrintWriter(file);
-            for (String line : lines)
-                printerWriter.println(line);
+            File file = new File(String.valueOf(outputFilePath.resolve(String.format("%s.csv", fileName))));
+            PrintWriter printerWriter = new PrintWriter(new FileWriter(file, true));
+            for (int i=0; i<lines.size(); i++) {
+                    printerWriter.println(lines.get(i));
+            }
             printerWriter.close();
-            return file.toPath().toAbsolutePath();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+        } catch (IOException e) {
+            System.out.println("File is not saved due to incorrect path");
         }
     }
 
@@ -32,7 +28,7 @@ public class FileHelper {
         try {
             return readAllLines(inputFilePath);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Attempt to read the file failed");
         }
         return null;
     }
