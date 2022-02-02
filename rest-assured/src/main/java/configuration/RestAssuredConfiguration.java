@@ -5,7 +5,8 @@ import static io.restassured.RestAssured.given;
 
 public class RestAssuredConfiguration {
 
-    public static String BASE_URI = "https://www.bankier.pl/gielda/notowania/akcje";
+    public static final String HTTPS = "https://";
+    public static String BASE_URI = "www.bankier.pl/";
 
     private static RestAssuredConfiguration instance;
 
@@ -18,6 +19,6 @@ public class RestAssuredConfiguration {
 
     public RequestSpecification getRequestSpecification() {
         return given().log().all()
-                .baseUri(BASE_URI);
+                .baseUri(HTTPS + BASE_URI);
     }
 }
