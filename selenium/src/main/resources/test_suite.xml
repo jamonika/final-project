@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Stocks price tests">
+    <test name="Base scenarios">
+        <classes>
+            <class name="tests.CheckIfStocksPriceRaisedTest"></class>
+        </classes>
+    </test>
+</suite>
