@@ -6,7 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.nio.file.Path;
 
 public class FirefoxDriverWrapper extends DriverWrapper {
-    private static final Path firefoxDriverPath = Path.of("src", "main", "resources", "drivers", "geckodriver");
+    private static final Path firefoxDriverPath = Path.of("src", "main", "resources", "drivers", "geckodriver.exe");
 
 
     @Override
