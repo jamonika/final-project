@@ -13,24 +13,30 @@ public class FilterStocks {
 
 
     public void askUserForParameter() {
-        System.out.println(
-                """
-                                Filtering stocks data and getting the list of results in csv format file.
-                                        
-                                Stock data contains following parameters:
-                                1. price
-                                2. change
-                                3. percentage change
-                                4. transactions number
-                                5. volume
-                                6. opening
-                                7. max
-                                8. min
-                                        
-                                Please select the parameter by which you want to filter the data by providing the number of the parameter from above list.
-                                If you want to exit program type "exit".
-                        """
-        );
+        String newLine = System.getProperty("line.separator");
+        System.out.println("Filtering stocks data and getting the list of results in csv format file."
+                .concat(newLine)
+                .concat("Stock data contains following parameters:")
+                .concat(newLine)
+                .concat("1. price")
+                .concat(newLine)
+                .concat("2. change")
+                .concat(newLine)
+                .concat("3. percentage change")
+                .concat(newLine)
+                .concat("4. transactions number")
+                .concat(newLine)
+                .concat("5. volume")
+                .concat(newLine)
+                .concat("6. opening")
+                .concat(newLine)
+                .concat("7. max")
+                .concat(newLine)
+                .concat("8. min")
+                .concat(newLine)
+                .concat("Please select the parameter by which you want to filter the data by providing the number of the parameter from above list.")
+                .concat(newLine)
+                .concat("If you want to exit program type \"exit\"."));
     }
 
     public void askUserForOperation() {
