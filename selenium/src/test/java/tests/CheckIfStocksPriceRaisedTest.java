@@ -26,7 +26,7 @@ public class CheckIfStocksPriceRaisedTest {
     @Test(dataProvider = "stockData")
     public void checkIfStockPriceRaised(String name, String changeStr, Stock stock) {
         Double change = Double.valueOf(changeStr);
-        assertTrue(change > 0);
+        assertTrue(change > 0, "Stock price decreased");
     }
 
 }
