@@ -20,7 +20,7 @@ public class DownloadStocksData extends BasicTest {
     private Gson gson = new Gson();
     public static final Path OUTPUT_STOCK_FILES_PATH = Path.of("stock_data");
 
-    @Test
+    @Test(priority = 1)
     public void retrieveStocksData() {
         StocksPagesBarPage stocksPagesBarPage = new StocksPagesBarPage(webDriver);
         stocksPagesBarPage.openPage();

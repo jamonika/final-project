@@ -2,6 +2,7 @@
 <suite name="Stocks price tests">
     <test name="Base scenarios">
         <classes>
+            <class name="tests.DownloadStocksData"></class>
             <class name="tests.CheckIfStocksPriceRaisedTest"></class>
         </classes>
     </test>

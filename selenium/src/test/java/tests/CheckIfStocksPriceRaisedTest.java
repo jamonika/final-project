@@ -23,7 +23,7 @@ public class CheckIfStocksPriceRaisedTest {
         return dataList.iterator();
     }
 
-    @Test(dataProvider = "stockData")
+    @Test(dataProvider = "stockData", priority = 2)
     public void checkIfStockPriceRaised(String name, String changeStr, Stock stock) {
         Double change = Double.valueOf(changeStr);
         assertTrue(change > 0, "Stock price decreased");
