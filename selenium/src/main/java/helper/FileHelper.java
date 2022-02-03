@@ -1,6 +1,8 @@
 package helper;
 
 import com.google.gson.Gson;
+import io.qameta.allure.Step;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -11,9 +13,11 @@ import java.util.ArrayList;
 
 import static java.nio.file.Files.readString;
 
+@Slf4j
 public class FileHelper {
 
     public void saveDataInJsonFormat(String data, Path outputFilePath) {
+        log.info("Save data in JSON format in path " + outputFilePath);
         File filePath = new File(String.valueOf(outputFilePath));
         try {
             FileWriter fileWriter = new FileWriter(filePath);
@@ -25,6 +29,7 @@ public class FileHelper {
     }
 
     public Object readDataFromJsonFile(Path inputFilePath, Object obj) {
+        log.info("Read data from JSON file from path " + inputFilePath);
         Gson gson = new Gson();
         try {
             return gson.fromJson(readString(inputFilePath), (Type) obj);
@@ -35,6 +40,7 @@ public class FileHelper {
     }
 
     public void saveDataInCsvFormat(ArrayList<String> lines, Path path) {
+        log.info("Save data in csv format");
         try {
             File file = new File(String.valueOf(path.resolve(String.format("results_%s.csv", LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)))));
             PrintWriter printerWriter = new PrintWriter(file);

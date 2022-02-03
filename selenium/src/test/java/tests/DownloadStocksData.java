@@ -6,6 +6,7 @@ import dto.Stock;
 import dto.Stocks;
 import helper.FileHelper;
 import helper.StocksHelper;
+import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import page.objects.PrivacyAndPolicyPage;
 import page.objects.StocksPagesBarPage;

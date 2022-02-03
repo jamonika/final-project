@@ -1,6 +1,7 @@
 package helper;
 
 import dto.Stocks;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -13,11 +14,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class FindingLatestStocksDataHelper {
 
     private static final Path STOCK_FILES_PATH = Path.of( "stock_data");
 
     public Stocks getMostRecentTimeResults() {
+        log.info("Get most recent time results with stock data");
         File filePath = new File(String.valueOf(STOCK_FILES_PATH));
         File[] filesInDirectory = filePath.listFiles();
         List<String> fileNames = Arrays.asList(filesInDirectory).stream().map(f -> f.getName()).collect(Collectors.toList());

@@ -1,12 +1,15 @@
 package helper;
 
 import dto.StockPricePoint;
+import io.qameta.allure.Step;
+import lombok.extern.slf4j.Slf4j;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class StockHelper {
     public static final Path STOCK_SYMBOLS_PATH = Path.of("src", "main", "resources", "stock_symbols");
     public static final Path STOCK_HISTORY_DATA_PATH = Path.of("stock-history-data");
@@ -55,6 +58,7 @@ public class StockHelper {
         return response == null ? false : true;
     }
 
+    @Step("Saving stock price history to csv file")
     public void saveStockPriceHistory(List<List<Double>> stockPriceHistory, String symbol) {
         FileHelper fileHelper = new FileHelper();
 

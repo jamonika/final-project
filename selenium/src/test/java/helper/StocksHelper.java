@@ -1,6 +1,8 @@
 package helper;
 
 import dto.Stock;
+import io.qameta.allure.Step;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import page.objects.StocksPagesBarPage;
@@ -9,12 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class StocksHelper {
+
     public List<Stock> getStocks(StocksPagesBarPage stocksPagesBarPage, List<String> quotesBarTexts) {
         List<Stock> allStocks = new ArrayList<>();
 
         for (String s : quotesBarTexts) {
-            List<WebElement> quotesRows = stocksPagesBarPage.goToSpecificPageOfStocks(s).getQuotesRowsFromPage();
+            List<WebElement> quotesRows = stocksPagesBarPage.goToSpecificPageOfStocks(s).getStockRowsFromPage();
             for (WebElement r : quotesRows) {
                 allStocks.add(mapRowToStockElement(r));
             }
